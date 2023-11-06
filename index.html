@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax Calculator</title>
+  <style>
+
+
+    h1 {
+      text-align: center;
+      color: #34a7be;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #24899e;
+    }
+
+    input{
+      width: 100%;
+      padding: 5px;
+      font-size: 16px;
+      border: 1px solid #81ddef;
+      border-radius: 4px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #34a7be;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    p {
+      margin-top: 10px;
+    }
+
+    @media screen and (max-width: 480px) {
+      .container {
+        padding: 10px;
+      }
+
+      input, button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Tax Calculator</h1>
+
+  <div class="container">
+    <div>
+      <label for="invoice-price">Invoice Price:</label>
+      <input  id="invoice-price">
+      <button onclick="calculateTax()">Calculate Tax</button>
+      <p id="tax-value"></p>
+    </div>
+
+    <div>
+      <label>Number of Participants:</label>
+      <input id="participants">
+      <button onclick="calculateCost()">Calculate Cost per Person</button>
+      <p id="cost-per-person"></p>
+    </div>
+  </div>
+
+  <script>
+  
+
+    var invoicePrice = 0;
+    var tax = 0;
+
+    function calculateTax() {
+      var invoicePriceInput = document.getElementById('invoice-price');
+      var taxValueOutput = document.getElementById('tax-value');
+
+      invoicePrice = parseFloat(invoicePriceInput.value);
+      tax = invoicePrice * 0.15; 
+
+      taxValueOutput.textContent = 'Tax Value: ' + tax;
+    }
+
+    function calculateCost() {
+      var participantsInput = document.getElementById('participants');
+      var costPerPersonOutput = document.getElementById('cost-per-person');
+
+      var participants = parseInt(participantsInput.value);
+      var costPerPerson = (invoicePrice + tax) / participants;
+
+      costPerPersonOutput.textContent = 'Cost per Person: ' + costPerPerson;
+    }
+
+  </script>
+</body>
+</html>
